@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  salt_master:
+    image: fouts/saltmaster:2018.3.0
+    container_name: salt_master
+    environment:
+      - "LOG_LEVEL=error"
+    volumes:
+      - /data/saltmaster/pki:/etc/salt/pki
+      - /data/saltmaster/cache:/var/salt/cache
+      - /data/saltmaster/logs:/var/logs/salt
+      - /data/saltmaster/master.d:/etc/salt/master.d
+      - /data/saltmaster/data:/srv/salt 
+      - /data/saltmaster/pillar:/srv/pillar
+    networks:
+      - bridge
