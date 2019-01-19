@@ -3,13 +3,12 @@ ARG EMAIL
 ARG IMAGE
 FROM $IMAGE
 LABEL maintainer "$EMAIL"
-ENV LOG_LEVEL=error
 
 # Copy bootstrap File
 COPY bootstrap-salt.sh /bootstrap-salt.sh
 
 # Execute bootstrap file
-RUN sh /bootstrap-salt.sh -M -N
+RUN sh /bootstrap-salt.sh -M -N -X
 
 # CLEANUP
 RUN apt-get autoclean --yes \
