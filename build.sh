@@ -17,7 +17,9 @@ docker_push() {
 
     # Push Tags
     docker tag ${REPO_NAME}:master ${version_iteration}
+    docker tag ${REPO_NAME}:master ${version_iteration}.${BUILD_NUMBER}
     docker push ${version_iteration}
+    docker push ${version_iteration}.${BUILD_NUMBER}
     docker images
 }
 
