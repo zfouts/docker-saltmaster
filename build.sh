@@ -3,16 +3,23 @@ set -o pipefail
 set -e
 set -x
 
+# You need VERSON_IMAGE_TAG, IMAGE, REPO_NAME, EMAIL defined.
+VERSION_IMAGE_TAG=2018.3.3
+EMAIL=zach@linux.com
+REPO_NAME=fouts/salt-master
+IMAGE=ubuntu:16.04
+
+cmd=$1
 docker_build() {
     local build_sha=$(git rev-parse HEAD)
     docker build --build-arg IMAGE=${IMAGE} --build-arg EMAIL=${EMAIL} --label build.sha=${build_sha} -t ${REPO_NAME}:master .
 }
 
 docker_push() {
-    local version="${REPO_NAME}:${VERSON_IMAGE_TAG}"
-    local version_iteration="${REPO_NAME}:${VERSON_IMAGE_TAG}.$(uname -m)"
+    local version="${REPO_NAME}:${VERSION_IMAGE_TAG}"
+    local version_iteration="${REPO_NAME}:${VERSION_IMAGE_TAG}_$(uname -m)"
 
-    docker login -u="${docker_username}" -p="${docker_password}"
+#    docker login -u="${docker_username}" -p="${docker_password}"
 
     # Push Tags
     docker tag ${REPO_NAME}:master ${version_iteration}
@@ -21,12 +28,11 @@ docker_push() {
 }
 
 build_commands () {
-
-    if [ "$1" == "build" ]; then
+    if [ "$cmd" == "build" ]; then
         docker_build
-    elif [ "$1" == "push" ]; then
+    elif [ "$cmd" == "push" ]; then
         docker_push
-    elif [ "$1" == "deploy" ]; then
+    elif [ "$cmd" == "deploy" ]; then
         docker_build
         docker_push
     fi
@@ -51,7 +57,7 @@ check_deploy() {
     fi
 }
 
-case "$1" in
+case "$cmd" in
     "build")
         build_commands
         ;;
