@@ -23,7 +23,7 @@ Dockerized salt-master built from salt-bootstrap.sh
 * GCP - f1-micro
 
 ## Issues/Bugs
-For bugs, complaints, etc, plase see [https://github.com/zfouts/docker-saltmaster/issues]
+For bugs, complaints, etc, plase see https://github.com/zfouts/docker-saltmaster/issues
 
 ## Building
-For information on building please see: [https://github.com/zfouts/docker-saltmaster/blob/master/build/README.md]
+For information on building please see: https://github.com/zfouts/docker-saltmaster/blob/master/build/README.md

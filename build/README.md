@@ -4,9 +4,9 @@
 ## Getting Started
 
 Requirements:
-- manifest-tool [https://github.com/estesp/manifest-tool]
-- salt-bootstrap [https://github.com/saltstack/salt-bootstrap]
-- Docker [https://docker.com]
+- manifest-tool https://github.com/estesp/manifest-tool
+- salt-bootstrap https://github.com/saltstack/salt-bootstrap
+- Docker https://docker.com
 
 
 
@@ -55,4 +55,4 @@ manifest-tool push from-spec ./manifest.yml
 
 ### Bugs/Feedback
 
-Please open an issue at [https://github.com/zfouts/docker-saltmaster/issues]
+Please open an issue at https://github.com/zfouts/docker-saltmaster/issues
