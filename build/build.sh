@@ -62,6 +62,6 @@ case "$cmd" in
         build_commands
         ;;        
     *)
-        echo NO SIR
+        echo "usage: $0 [build|deploy]"
         ;;
 esac
