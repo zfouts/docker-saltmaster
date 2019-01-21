@@ -3,7 +3,7 @@
 Dockerized salt-master built from salt-bootstrap.sh
 
 ## Supported Architectures
-* arm7l - built on debian:8 (only distro supported on armf)
+* arm7l - built on debian:8 (only distro supported on armhf)
 * arm64  - built on debian:9
 * x86_64 - built on debian:9
 
