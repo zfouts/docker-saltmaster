@@ -2,7 +2,7 @@ version: '3'
 
 services:
   salt_master:
-    image: fouts/saltmaster:2018.3.0
+    image: fouts/salt-master:latest
     container_name: salt_master
     environment:
       - "LOG_LEVEL=error"
