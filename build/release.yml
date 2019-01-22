@@ -1,0 +1,18 @@
+image: fouts/salt-master:2018.3.3
+manifests:
+  -
+    image: fouts/salt-master:2018.3.3_armv7l
+    platform:
+      architecture: arm
+      os: linux
+  -
+    image: fouts/salt-master:2018.3.3_x86_64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: fouts/salt-master:2018.3.3_aarch64
+    platform:
+      architecture: arm64
+      os: linux
+
