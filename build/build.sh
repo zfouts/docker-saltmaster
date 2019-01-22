@@ -31,11 +31,20 @@ docker_build() {
 
 docker_push() {
   docker login -u="${docker_username}" -p="${docker_password}"
-  local version_iteration="${REPO_NAME}:${VERSION_IMAGE_TAG}_${BUILD_ARCH}"
 
-  # Push Tags
+  # Use short git sha for tagging
+  local build_sha=$(git log -1 --format=%h)
+  local version_iteration="${REPO_NAME}:${VERSION_IMAGE_TAG}_${BUILD_ARCH}"
+  local version_iteration_sha="${REPO_NAME}:${VERSION_IMAGE_TAG}-${build_sha}_${BUILD_ARCH}"
+  
+  # Push Tags: fouts/salt-stack:2018.3.3_x86_64
   docker tag ${REPO_NAME}:master ${version_iteration}
   docker push ${version_iteration}
+
+  # Push Tags: fouts/salt-stack:2018.3.3-eba89a4_x86_64
+  docker tag ${REPO_NAME}:master ${version_iteration_sha}
+  docker push ${version_iteration_sha}
+
 }
 
 build_commands () {
