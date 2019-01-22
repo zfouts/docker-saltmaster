@@ -1,4 +1,4 @@
-FROM debian:9
+FROM debian:8
 
 # Copy bootstrap File
 COPY bootstrap-salt.sh /bootstrap-salt.sh
