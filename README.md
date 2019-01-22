@@ -1,8 +1,9 @@
 # docker-saltmaster
-[![](https://images.microbadger.com/badges/image/fouts/salt-master.svg)](https://microbadger.com/images/fouts/salt-master "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/fouts/salt-master:2018.3.3_x86_64.svg)](https://microbadger.com/images/fouts/salt-master:2018.3.3_x86_64 "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/fouts/salt-master:2018.3.3_armv7l.svg)](https://microbadger.com/images/fouts/salt-master:2018.3.3_armv7l "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/fouts/salt-master:2018.3.3_aarch64.svg)](https://microbadger.com/images/fouts/salt-master:2018.3.3_aarch64 "Get your own image badge on microbadger.com")
+x86_64: [![](https://images.microbadger.com/badges/image/fouts/salt-master:2018.3.3_x86_64.svg)](https://microbadger.com/images/fouts/salt-master:2018.3.3_x86_64 "Get your own image badge on microbadger.com")
+
+arm7l: [![](https://images.microbadger.com/badges/image/fouts/salt-master:2018.3.3_armv7l.svg)](https://microbadger.com/images/fouts/salt-master:2018.3.3_armv7l "Get your own image badge on microbadger.com")
+
+aarch64: [![](https://images.microbadger.com/badges/image/fouts/salt-master:2018.3.3_aarch64.svg)](https://microbadger.com/images/fouts/salt-master:2018.3.3_aarch64 "Get your own image badge on microbadger.com")
 
 ## Dockerized salt-master
 Dockerized salt-master built from salt-bootstrap.sh
