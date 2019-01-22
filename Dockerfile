@@ -2,7 +2,6 @@ ARG SALTVERSION
 ARG EMAIL
 ARG IMAGE
 FROM $IMAGE
-LABEL maintainer "$EMAIL"
 
 # Copy bootstrap File
 COPY bootstrap-salt.sh /bootstrap-salt.sh
