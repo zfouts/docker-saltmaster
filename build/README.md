@@ -20,9 +20,13 @@ WARNING: NO DEFAULTS
   * debian:9
   * ubuntu:16.04
   * ubuntu 18.04
+  
 `EMAIL` - Maintainer Email
+
 `REPO_NAME` - Docker Hub Repo
+
 `VERSION_IMAGE_TAG` - SaltStack Version
+
 `JENKINS` - Set to TRUE if you don't want to supply interactive answer
 
 #### Build Script
