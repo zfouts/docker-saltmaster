@@ -36,7 +36,6 @@ docker_push() {
   # Push Tags
   docker tag ${REPO_NAME}:master ${version_iteration}
   docker push ${version_iteration}
-  docker images | grep ${version_iteration}
 }
 
 build_commands () {
