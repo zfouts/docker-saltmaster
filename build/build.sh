@@ -2,25 +2,41 @@
 set -o pipefail
 set -e
 
+if [[ -z "${NODE_LABELS}" ]]; then
+  echo "Please set NODE_LABELS"
+  exit 1
+fi
+  
 cmd=$1
 
 docker_build() {
-    local build_sha=$(git rev-parse HEAD)
-    docker build --build-arg IMAGE=${IMAGE} --build-arg EMAIL=${EMAIL} --label build.sha=${build_sha} -t ${REPO_NAME}:master .
+  if [ "$(echo ${NODE_LABELS}|awk '{print $1}')" == "armhf" ];
+  then
+    BUILD_ARCH=$(uname -m)
+    IMAGE=debian:8
+    DOCKERFILE=Dockerfile.${BUILD_ARCH}
+  else
+    BUILD_ARCH=$(uname -m)
+    IMAGE=debian:9
+    DOCKERFILE=Dockerfile
+  fi
+  docker_build
+}
+
+docker_build() {
+  local build_sha=$(git rev-parse HEAD)
+  echo docker build --build-arg IMAGE=${IMAGE} --label built_on=${IMAGE} --label maintainer=${EMAIL} --label build.sha=${build_sha} -t ${REPO_NAME}:master . -f ./${DOCKERFILE} \
+  && docker_push
 }
 
 docker_push() {
-    local version="${REPO_NAME}:${VERSION_IMAGE_TAG}"
-    local version_iteration="${REPO_NAME}:${VERSION_IMAGE_TAG}_$(uname -m)"
+  docker login -u="${docker_username}" -p="${docker_password}"
+  local version_iteration="${REPO_NAME}:${VERSION_IMAGE_TAG}_${BUILD_ARCH}"
 
-#    docker login -u="${docker_username}" -p="${docker_password}"
-
-    # Push Tags
-    docker tag ${REPO_NAME}:master ${version_iteration}
-    docker tag ${REPO_NAME}:master ${version_iteration}.${BUILD_NUMBER}
-    docker push ${version_iteration}
-    docker push ${version_iteration}.${BUILD_NUMBER}
-    docker images
+  # Push Tags
+  docker tag ${REPO_NAME}:master ${version_iteration}
+  docker push ${version_iteration}
+  docker images | grep ${version_iteration}
 }
 
 build_commands () {
@@ -60,7 +76,7 @@ case "$cmd" in
     "deploy")
         check_deploy
         build_commands
-        ;;        
+        ;;
     *)
         echo "usage: $0 [build|deploy]"
         ;;
