@@ -6,10 +6,10 @@ if [[ -z "${NODE_LABELS}" ]]; then
   echo "Please set NODE_LABELS"
   exit 1
 fi
-  
+
 cmd=$1
 
-docker_build() {
+docker_init_build() {
   if [ "$(echo ${NODE_LABELS}|awk '{print $1}')" == "armhf" ];
   then
     BUILD_ARCH=$(uname -m)
@@ -41,11 +41,11 @@ docker_push() {
 
 build_commands () {
     if [ "$cmd" == "build" ]; then
-        docker_build
+        docker_build_init
     elif [ "$cmd" == "push" ]; then
         docker_push
     elif [ "$cmd" == "deploy" ]; then
-        docker_build
+        docker_build_init
         docker_push
     fi
 }
@@ -81,3 +81,4 @@ case "$cmd" in
         echo "usage: $0 [build|deploy]"
         ;;
 esac
+
