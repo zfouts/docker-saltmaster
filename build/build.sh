@@ -25,7 +25,7 @@ docker_build_init() {
 
 docker_build() {
   local build_sha=$(git rev-parse HEAD)
-  echo docker build --label built_on=${IMAGE} --label maintainer=${EMAIL} --label build.sha=${build_sha} -t ${REPO_NAME}:master . -f ./${DOCKERFILE} \
+  echo docker build --label built_on=${IMAGE} --label maintainer=${EMAIL} --label build.sha=${build_sha} -t ${REPO_NAME}:master -f ./${DOCKERFILE} . \
   && docker_push
 }
 
