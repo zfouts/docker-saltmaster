@@ -9,7 +9,7 @@ fi
 
 cmd=$1
 
-docker_init_build() {
+docker_build_init() {
   if [ "$(echo ${NODE_LABELS}|awk '{print $1}')" == "armhf" ];
   then
     BUILD_ARCH=$(uname -m)
