@@ -1,4 +1,11 @@
-pipeline:
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
   publish_saltmaster_armv8:
     image: plugins/docker
     repo: fouts/salt-master
@@ -11,6 +18,11 @@ pipeline:
       event: push
       platform: linux/arm64
 
+platform:
+  os: linux
+  arch: arm
+  
+steps:
   publish_saltmaster_armv7:
     image: plugins/docker
     repo: fouts/salt-master
@@ -23,6 +35,11 @@ pipeline:
       event: push
       platform: linux/arm
 
+platform:
+  os: linux
+  arch: amd64
+
+steps:
   publish_saltmaster_x86_64:
     image: plugins/docker
     repo: fouts/salt-master
@@ -33,4 +50,5 @@ pipeline:
     when:
       branch: master
       event: push
-      platform: linux/amd64      
+      platform: linux/amd64
+
