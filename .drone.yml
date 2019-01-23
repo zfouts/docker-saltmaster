@@ -1,6 +1,6 @@
 pipeline:
   publish_saltmaster_armv8:
-    image: plugins/docker:linux-arm64
+    image: plugins/docker
     repo: fouts/salt-master
     dockerfile: Dockerfile.arm64
     secrets: [ docker_username, docker_password ]
@@ -15,7 +15,7 @@ pipeline:
       platform: arm64
 
   publish_saltmaster_armv7:
-    image: plugins/docker:linux-arm
+    image: plugins/docker
     repo: fouts/salt-master
     dockerfile: Dockerfile.arm
     secrets: [ docker_username, docker_password ]
