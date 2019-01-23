@@ -9,7 +9,7 @@ pipeline:
     when:
       branch: master
       event: push
-      platform: linux/amd64
+      platform: amd64
 
   publish_saltmaster_armv7:
     image: plugins/docker:linux-arm
@@ -21,17 +21,17 @@ pipeline:
     when:
       branch: master
       event: push
-      platform: linux/arm
+      platform: arm
 
   publish_saltmaster_armv8:
     image: plugins/docker:linux-arm64
     repo: fouts/salt-master
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile.arm64
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm64
     auto_tag: true    
     when:
       branch: master
       event: push
-      platform: linux/arm64
+      platform: arm64
 
