@@ -6,6 +6,9 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm64
     auto_tag: true
+    platform:
+      os: linux
+      arch: arm64
     when:
       branch: master
       event: push
@@ -18,6 +21,9 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm
     auto_tag: true
+    platform:
+      os: linux
+      arch: arm
     when:
       branch: master
       event: push
@@ -30,7 +36,11 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-amd64
     auto_tag: true
+    platform:
+      os: linux
+      arch: amd64
     when:
       branch: master
       event: push
-      platform: linux/amd64      
+      platform: linux/amd64
+
