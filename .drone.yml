@@ -2,17 +2,14 @@ pipeline:
   publish_saltmaster_armv8:
     image: plugins/docker
     repo: fouts/salt-master
-    dockerfile: Dockerfile.arm64
+    dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm64
     auto_tag: true
-    platform:
-      os: linux
-      arch: arm64    
     when:
       branch: master
       event: push
-      platform: arm64
+      platform: linux/arm64
 
   publish_saltmaster_armv7:
     image: plugins/docker
@@ -21,13 +18,10 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm
     auto_tag: true
-    platform:
-      os: linux
-      arch: arm
     when:
       branch: master
       event: push
-      platform: arm
+      platform: linux/arm
 
   publish_saltmaster_x86_64:
     image: plugins/docker
@@ -36,10 +30,7 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-amd64
     auto_tag: true
-    platform:
-      os: linux
-      arch: amd64
     when:
       branch: master
       event: push
-      platform: amd64      
+      platform: linux/amd64      
