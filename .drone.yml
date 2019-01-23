@@ -1,0 +1,35 @@
+pipeline:
+  publish_saltmaster_x86_64:
+    image: plugins/docker
+    repo: fouts/salt-master
+    dockerfile: Dockerfile
+    secrets: [ docker_username, docker_password ]
+    tag: [ linux ]
+    build_args: [ HTTP_PROXY=http://yourproxy.com ]
+    when:
+      branch: master
+      event: push
+      platform: linux/amd64
+
+  publish_saltmaster_armv7:
+    image: plugins/docker
+    repo: fouts/salt-master
+    dockerfile: Dockerfile.arm
+    secrets: [ docker_username, docker_password ]
+    tag: [ linux-arm ]
+    when:
+      branch: master
+      event: push
+      platform: linux/arm
+
+  publish_saltmaster_armv8:
+    image: plugins/docker
+    repo: fouts/salt-master
+    dockerfile: Dockerfile.arm64
+    secrets: [ docker_username, docker_password ]
+    tag: [ linux-arm64]
+    when:
+      branch: master
+      event: push
+      platform: linux/arm64
+
