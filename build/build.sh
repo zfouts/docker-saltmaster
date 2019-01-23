@@ -14,7 +14,7 @@ docker_build_init() {
   then
     BUILD_ARCH=$(uname -m)
     IMAGE=debian:8
-    DOCKERFILE=Dockerfile.${BUILD_ARCH}
+    DOCKERFILE=Dockerfile.arm
   else
     BUILD_ARCH=$(uname -m)
     IMAGE=debian:9
