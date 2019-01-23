@@ -1,9 +1,7 @@
 kind: pipeline
 name: default
 
-platform:
-  os: linux
-  arch: arm64
+
 
 steps:
   publish_saltmaster_armv8:
@@ -13,16 +11,16 @@ steps:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm64
     auto_tag: true
+
+    platform:
+      os: linux
+      arch: arm64
+
     when:
       branch: master
       event: push
       platform: linux/arm64
 
-platform:
-  os: linux
-  arch: arm
-  
-steps:
   publish_saltmaster_armv7:
     image: plugins/docker
     repo: fouts/salt-master
@@ -30,16 +28,16 @@ steps:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm
     auto_tag: true
+
+    platform:
+      os: linux
+      arch: arm
+
     when:
       branch: master
       event: push
       platform: linux/arm
 
-platform:
-  os: linux
-  arch: amd64
-
-steps:
   publish_saltmaster_x86_64:
     image: plugins/docker
     repo: fouts/salt-master
@@ -47,8 +45,11 @@ steps:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-amd64
     auto_tag: true
+    platform:
+      os: linux
+      arch: amd64
+
     when:
       branch: master
       event: push
       platform: linux/amd64
-
