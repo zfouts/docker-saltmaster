@@ -4,31 +4,35 @@ pipeline:
     repo: fouts/salt-master
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
-    tag: [ linux ]
+    auto_tag_suffix: linux-amd64
+    auto_tag: true
+    build_args: [ HTTP_PROXY=http://yourproxy.com ]
     when:
       branch: master
       event: push
-      platform: amd64
+      platform: linux/amd64
 
   publish_saltmaster_armv7:
-    image: plugins/docker
+    image: plugins/docker:linux-arm
     repo: fouts/salt-master
     dockerfile: Dockerfile.arm
     secrets: [ docker_username, docker_password ]
-    tag: [ linux-arm ]
+    auto_tag_suffix: linux-arm
+    auto_tag: true    
     when:
       branch: master
       event: push
-      platform: arm
+      platform: linux/arm
 
   publish_saltmaster_armv8:
-    image: plugins/docker
+    image: plugins/docker:linux-arm64
     repo: fouts/salt-master
-    dockerfile: Dockerfile.arm64
+    dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
-    tag: [ linux-arm64]
+    auto_tag_suffix: linux-arm64
+    auto_tag: true    
     when:
       branch: master
       event: push
-      platform: arm64
+      platform: linux/arm64
 
