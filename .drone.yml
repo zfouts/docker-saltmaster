@@ -2,7 +2,7 @@ pipeline:
   publish_saltmaster_armv8:
     image: plugins/docker
     repo: fouts/salt-master
-    dockerfile: Dockerfile.arm64
+    dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-arm64
     auto_tag: true
