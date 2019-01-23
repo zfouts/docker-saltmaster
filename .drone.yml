@@ -6,7 +6,6 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     auto_tag_suffix: linux-amd64
     auto_tag: true
-    build_args: [ HTTP_PROXY=http://yourproxy.com ]
     when:
       branch: master
       event: push
