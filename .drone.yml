@@ -11,17 +11,17 @@ pipeline:
       event: push
       platform: amd64
 
-  publish_saltmaster_armv7:
-    image: plugins/docker:linux-arm
-    repo: fouts/salt-master
-    dockerfile: Dockerfile.arm
-    secrets: [ docker_username, docker_password ]
-    auto_tag_suffix: linux-arm
-    auto_tag: true    
-    when:
-      branch: master
-      event: push
-      platform: arm
+#  publish_saltmaster_armv7:
+#    image: plugins/docker:linux-arm
+#    repo: fouts/salt-master
+#    dockerfile: Dockerfile.arm
+#    secrets: [ docker_username, docker_password ]
+#    auto_tag_suffix: linux-arm
+#    auto_tag: true    
+#    when:
+#      branch: master
+#      event: push
+#      platform: arm
 
   publish_saltmaster_armv8:
     image: plugins/docker:linux-arm64
