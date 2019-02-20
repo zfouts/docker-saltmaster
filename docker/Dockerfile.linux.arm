@@ -1,0 +1,27 @@
+FROM arm32v7/debian:8
+LABEL built_on=debian:8
+LABEL maintainer=zach@linux.com
+LABEL salt_version=2018.3.3
+
+
+# Add the GPG Key for salt.
+RUN \
+ apt-get update \
+ && apt-get install wget gnupg2 --yes \
+ && wget -O- https://repo.saltstack.com/apt/debian/8/armhf/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
+
+# Setup saltstack list & install salt-master
+RUN \
+  echo 'deb http://repo.saltstack.com/apt/debian/8/armhf/latest stretch main' tee -a /etc/apt/sources.list.d/saltstack.list \
+  && apt-get update \
+  && apt-get install salt-master --yes
+
+# CLEANUP
+RUN apt-get autoclean --yes \
+  && rm -rf /var/lib/apt/lists/*
+
+# Copy entry point and make it executable
+COPY entry-point.sh /entry-point.sh
+RUN chmod +x /entry-point.sh
+
+ENTRYPOINT ["/entry-point.sh"]
