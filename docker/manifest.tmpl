@@ -7,18 +7,18 @@ tags:
 {{/if}}
 manifests:
   -
-    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}linux-amd64
+    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}-amd64
     platform:
       architecture: amd64
       os: linux
   -
-    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}linux-arm64
+    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}-arm64
     platform:
       architecture: arm64
       os: linux
       variant: v8
   -
-    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}linux-arm
+    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}-arm
     platform:
       architecture: arm
       os: linux
