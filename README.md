@@ -2,6 +2,12 @@
 ## Dockerized salt-master
 ![build status](https://cloud.drone.io/api/badges/zfouts/docker-saltmaster/status.svg "Build Status")
 
+[DockerHub](https://hub.docker.com/r/fouts/salt-master)
+
+```
+docker pull fouts/salt-master
+```
+
 ## Supported Architectures
 * arm
 * arm64
