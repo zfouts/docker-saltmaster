@@ -11,13 +11,16 @@ steps:
   image: plugins/docker
   settings:
     auto_tag: true
-    auto_tag_suffix: 2018.3.3-amd64
+    auto_tag_suffix: linux-amd64
     dockerfile: docker/Dockerfile.linux.amd64
     password:
       from_secret: docker_password
     repo: fouts/salt-master
     username:
       from_secret: docker_username
+    tags:
+      - '2018.3.3-linux-amd64'
+      - 'linux-amd64'
   when:
     event:
     - push
@@ -35,14 +38,16 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    auto_tag: true
-    auto_tag_suffix: 2018.3.3-arm64
+    auto_tag: false
     dockerfile: docker/Dockerfile.linux.arm64
     password:
       from_secret: docker_password
     repo: fouts/salt-master
     username:
       from_secret: docker_username
+    tags:
+      - '2018.3.3-linux-arm64'
+      - 'linux-arm64'
   when:
     event:
     - push
@@ -59,18 +64,48 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    auto_tag: true
-    auto_tag_suffix: 2018.3.3-arm
+    auto_tag: false
     dockerfile: docker/Dockerfile.linux.arm
     password:
       from_secret: docker_password
     repo: fouts/salt-master
     username:
       from_secret: docker_username
+    tags:
+      - '2018.3.3-linux-arm'
+      - 'linux-arm'
   when:
     event:
     - push
     - tag
+
+---
+
+kind: pipeline
+name: manifest
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: server
+  image: plugins/manifest:1
+  settings:
+    ignore_missing: true
+    password:
+      from_secret: docker_password
+    spec: docker/manifest.tmpl
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+    - tag
+depends_on:
+  - linux-arm
+  - linux-amd64
+  - linux-arm64
 
 ...
 
