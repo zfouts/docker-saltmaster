@@ -1,24 +1,18 @@
-image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}{{else}}latest{{/if}}
-{{#if build.tags}}
-tags:
-{{#each build.tags}}
-  - {{this}}
-{{/each}}
-{{/if}}
+image: fouts/salt-master:latest
 manifests:
   -
-    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}-amd64
+    image: fouts/salt-master:2018.3.3-amd64
     platform:
       architecture: amd64
       os: linux
   -
-    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}-arm64
+    image: fouts/salt-master:2018.3.3-arm64
     platform:
       architecture: arm64
       os: linux
       variant: v8
   -
-    image: fouts/salt-master:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}-arm
+    image: fouts/salt-master:2018.3.3-arm
     platform:
       architecture: arm
       os: linux
