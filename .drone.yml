@@ -20,7 +20,6 @@ steps:
       from_secret: docker_username
     tags:
       - '2018.3.3-amd64'
-      - 'linux-amd64'
   when:
     event:
     - push
@@ -47,7 +46,6 @@ steps:
       from_secret: docker_username
     tags:
       - '2018.3.3-arm64'
-      - 'linux-arm64'
   when:
     event:
     - push
@@ -73,7 +71,6 @@ steps:
       from_secret: docker_username
     tags:
       - '2018.3.3-arm'
-      - 'linux-arm'
   when:
     event:
     - push
