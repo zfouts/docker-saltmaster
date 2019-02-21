@@ -7,7 +7,7 @@ platform:
   arch: amd64
 
 steps:
-- name: publish_master
+- name: publish
   image: plugins/docker
   settings:
     auto_tag: true
@@ -23,8 +23,54 @@ steps:
     - push
     - tag
 
-depends_on:
-- linux-amd64
+---
+kind: pipeline
+name: linux-arm64
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: publish
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    auto_tag_suffix: 2018.3.3-arm64
+    dockerfile: docker/Dockerfile.linux.arm64
+    password:
+      from_secret: docker_password
+    repo: fouts/salt-master
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+    - tag
+---
+kind: pipeline
+name: linux-arm
+
+platform:
+  os: linux
+  arch: arm
+
+steps:
+- name: publish
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    auto_tag_suffix: 2018.3.3-arm
+    dockerfile: docker/Dockerfile.linux.arm
+    password:
+      from_secret: docker_password
+    repo: fouts/salt-master
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+    - tag
 
 ...
 
