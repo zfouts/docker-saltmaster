@@ -10,8 +10,7 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    auto_tag: true
-    auto_tag_suffix: linux-amd64
+    auto_tag: false
     dockerfile: docker/Dockerfile.linux.amd64
     password:
       from_secret: docker_password
