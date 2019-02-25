@@ -45,12 +45,6 @@ steps:
       from_secret: docker_username
     tags:
       - '2018.3.3-arm64'
-- name: slack
-  image: plugins/slack
-  settings:
-    webhook:
-      from_secret: slack_webhook
-    channel: #dev-notify
   when:
     event:
     - push
@@ -76,19 +70,12 @@ steps:
       from_secret: docker_username
     tags:
       - '2018.3.3-arm'
-- name: slack
-  image: plugins/slack
-  settings:
-    webhook:
-      from_secret: slack_webhook
-    channel: #dev-notify
   when:
     event:
     - push
     - tag
 
 ---
-
 kind: pipeline
 name: manifest
 
@@ -106,17 +93,10 @@ steps:
     spec: docker/manifest.tmpl
     username:
       from_secret: docker_username
-- name: slack
-  image: plugins/slack
-  settings:
-    webhook:
-      from_secret: slack_webhook
-    channel: #dev-notify
   when:
     event:
     - push
     - tag
-
 depends_on:
   - linux-arm
   - linux-amd64
