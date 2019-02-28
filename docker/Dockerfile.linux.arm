@@ -9,7 +9,7 @@ RUN \
  apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get upgrade --yes \
  && apt-get install wget gnupg2 --yes \
- && wget -O- https://repo.saltstack.com/apt/debian/8/armhf/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
+ && wget -O- https://repo.saltstack.com/apt/debian/9/armhf/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
 
 # Setup saltstack list & install salt-master
 RUN \
