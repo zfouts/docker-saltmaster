@@ -158,6 +158,15 @@ steps:
     exclude:
     - pull_request
 
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: dev
+  when:
+    status: [ success, failure ]
+
 trigger:
   ref:
   - refs/heads/master
@@ -169,21 +178,4 @@ depends_on:
   - linux-amd64
   - linux-arm64
 
----
-kind: pipeline
-name: slack
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: slack
-  image: plugins/slack
-  settings:
-    webhook:
-      from_secret: slack_webhook
-    channel: dev
-  when:
-    status: [ success, failure ]
 ...
