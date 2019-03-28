@@ -157,6 +157,7 @@ steps:
   when:
     exclude:
     - pull_request
+    - tags
 
 - name: slack
   image: plugins/slack
