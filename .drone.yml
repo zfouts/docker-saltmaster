@@ -17,8 +17,8 @@ steps:
     repo: fouts/salt-master
     username:
       from_secret: docker_username
-    tags:
-      - '2019.2.0-amd64'
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
   when:
     event:
     - tag
@@ -42,8 +42,8 @@ steps:
     repo: fouts/salt-master
     username:
       from_secret: docker_username
-    tags:
-      - '2019.2.0-arm64'
+    auto_tag: true
+    auto_tag_suffix: linux-arm64
   when:
     event:
     - tag
@@ -67,8 +67,8 @@ steps:
     repo: fouts/salt-master
     username:
       from_secret: docker_username
-    tags:
-      - '2019.2.0-arm'
+    auto_tag: true
+    auto_tag_suffix: linux-arm
   when:
     event:
     - tag
