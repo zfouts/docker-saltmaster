@@ -73,31 +73,31 @@ steps:
     - tag
     - push
 
----
-kind: pipeline
-name: manifest
-
-platform:
-  os: linux
-  arch: amd64
-
-steps:
-- name: server
-  image: plugins/manifest:1
-  settings:
-    ignore_missing: true
-    password:
-      from_secret: docker_password
-    spec: docker/manifest.tmpl
-    username:
-      from_secret: docker_username
-  when:
-    event:
-    - tag
-depends_on:
-  - linux-arm
-  - linux-amd64
-  - linux-arm64
-
+      #---
+      #kind: pipeline
+      #name: manifest
+      #
+      #platform:
+      #  os: linux
+      #  arch: amd64
+      #
+      #steps:
+      #- name: server
+      #  image: plugins/manifest:1
+      #  settings:
+      #    ignore_missing: true
+      #    password:
+      #      from_secret: docker_password
+      #    spec: docker/manifest.tmpl
+      #    username:
+      #      from_secret: docker_username
+      #  when:
+      #    event:
+      #    - tag
+      #depends_on:
+      #  - linux-arm
+      #  - linux-amd64
+      #  - linux-arm64
+      #
 ...
 
