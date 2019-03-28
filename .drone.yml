@@ -170,6 +170,13 @@ depends_on:
   - linux-arm64
 
 ---
+kind: pipeline
+name: slack
+
+platform:
+  os: linux
+  arch: amd64
+
 steps:
 - name: slack
   image: plugins/slack
