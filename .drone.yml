@@ -19,9 +19,11 @@ steps:
     auto_tag: true
     auto_tag_suffix: linux-amd64
   when:
+    branch:
+    - master
     event:
-    - tag
     - push
+    - tag
 
 ---
 kind: pipeline
@@ -44,9 +46,11 @@ steps:
     auto_tag: true
     auto_tag_suffix: linux-arm64
   when:
+    branch:
+    - master
     event:
-    - tag
     - push
+    - tag
 
 ---
 kind: pipeline
@@ -69,35 +73,43 @@ steps:
     auto_tag: true
     auto_tag_suffix: linux-arm
   when:
+    branch:
+    - master
     event:
+    - push
     - tag
+
+---
+kind: pipeline
+name: manifest
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: manifest
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: fouts/salt-master:latest
+    template: fouts/salt-master:OS-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm
+      - linux/arm64
+  when:
+    branch:
+    - master
+    event:
     - push
 
-      #---
-      #kind: pipeline
-      #name: manifest
-      #
-      #platform:
-      #  os: linux
-      #  arch: amd64
-      #
-      #steps:
-      #- name: server
-      #  image: plugins/manifest:1
-      #  settings:
-      #    ignore_missing: true
-      #    password:
-      #      from_secret: docker_password
-      #    spec: docker/manifest.tmpl
-      #    username:
-      #      from_secret: docker_username
-      #  when:
-      #    event:
-      #    - tag
-      #depends_on:
-      #  - linux-arm
-      #  - linux-amd64
-      #  - linux-arm64
-      #
-...
+depends_on:
+  - linux-arm
+  - linux-amd64
+  - linux-arm64
 
+...
