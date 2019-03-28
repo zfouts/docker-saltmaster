@@ -10,7 +10,6 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    auto_tag: false
     dockerfile: docker/Dockerfile.linux.amd64
     password:
       from_secret: docker_password
@@ -22,6 +21,7 @@ steps:
   when:
     event:
     - tag
+    - push
 
 ---
 kind: pipeline
@@ -35,7 +35,6 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    auto_tag: false
     dockerfile: docker/Dockerfile.linux.arm64
     password:
       from_secret: docker_password
@@ -47,6 +46,7 @@ steps:
   when:
     event:
     - tag
+    - push
 
 ---
 kind: pipeline
@@ -60,7 +60,6 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    auto_tag: false
     dockerfile: docker/Dockerfile.linux.arm
     password:
       from_secret: docker_password
@@ -72,6 +71,7 @@ steps:
   when:
     event:
     - tag
+    - push
 
 ---
 kind: pipeline
