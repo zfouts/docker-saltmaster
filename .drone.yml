@@ -154,6 +154,7 @@ steps:
     password:
       from_secret: docker_password
     spec: docker/manifest.tmpl
+    autotag: true
   when:
     exclude:
     - pull_request
