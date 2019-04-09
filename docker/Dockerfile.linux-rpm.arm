@@ -1,0 +1,15 @@
+FROM centos:latest
+LABEL built_on=centos_7
+LABEL maintainer=zach@linux.com
+
+
+# Add the GPG Key for salt.
+RUN \
+ yum install wget && wget -O /tmp/bootstrap.sh https://bootstrap.saltstack.com && bash /tmp/bootstrap.sh -X -M
+
+# Copy entry point and make it executable
+COPY entry-point.sh /entry-point.sh
+RUN chmod +x /entry-point.sh
+
+ENTRYPOINT ["/entry-point.sh"]
+
