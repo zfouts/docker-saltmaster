@@ -1,0 +1,15 @@
+FROM centos/aarch64
+LABEL built_on=centos_7
+LABEL maintainer=zach@linux.com
+
+
+# Add the GPG Key for salt.
+RUN \
+ yum install curl && bash <(curl https://bootstrap.saltstack.com) -M
+
+# Copy entry point and make it executable
+COPY entry-point.sh /entry-point.sh
+RUN chmod +x /entry-point.sh
+
+ENTRYPOINT ["/entry-point.sh"]
+
