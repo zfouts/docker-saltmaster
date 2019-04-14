@@ -25,3 +25,6 @@ COPY entry-point.sh /entry-point.sh
 RUN chmod +x /entry-point.sh
 
 ENTRYPOINT ["/entry-point.sh"]
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD salt '*' test.ping || exit 1
+
