@@ -1,7 +1,7 @@
 FROM debian:9
 LABEL built_on=debian:9
 LABEL maintainer=zach@linux.com
-
+LABEL version=2019.2.0
 
 # Add the GPG Key for salt.
 RUN \
