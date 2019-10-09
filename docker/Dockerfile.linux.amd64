@@ -1,7 +1,6 @@
 FROM debian:9
 LABEL built_on=debian:9
 LABEL maintainer=zach@linux.com
-LABEL version=2019.2.0
 
 # Add the GPG Key for salt.
 RUN \
@@ -23,5 +22,5 @@ RUN apt-get autoclean --yes \
 # Copy entry point and make it executable
 COPY entry-point.sh /entry-point.sh
 RUN chmod +x /entry-point.sh
-
+COPY VERSION /root/.salt-version
 ENTRYPOINT ["/entry-point.sh"]
