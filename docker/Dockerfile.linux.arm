@@ -1,6 +1,5 @@
 FROM arm32v7/debian:9
-MAINTAINER=zach@linux.com
-
+LABEL maintainer="zach@linux.com"
 # Add the GPG Key for salt.
 RUN \
  apt-get update \
