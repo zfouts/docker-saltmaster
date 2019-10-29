@@ -1,7 +1,5 @@
 FROM arm32v7/debian:9
-LABEL built_on=debian:9
-LABEL maintainer=zach@linux.com
-
+MAINTAINER=zach@linux.com
 
 # Add the GPG Key for salt.
 RUN \
