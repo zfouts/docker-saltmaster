@@ -27,7 +27,8 @@ RUN \
   groupadd -g 999 salt \
   &&  useradd -r -u 999 -g salt salt
 RUN \
-  chown -R salt /etc/salt /var/cache/salt /var/log/salt /var/run/salt
+  mkdir -p /etc/salt /var/cache/salt /var/log/salt /var/run/salt \
+  && chown -R salt /etc/salt /var/cache/salt /var/log/salt /var/run/salt
 USER salt
 
 
