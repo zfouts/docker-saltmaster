@@ -47,7 +47,7 @@ trigger:
 
 ---
 kind: pipeline
-name: linux-amd64
+name: linux-nonroot-amd64
 
 platform:
   os: linux
