@@ -5,11 +5,11 @@ RUN \
  apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get upgrade --yes \
  && apt-get install wget gnupg2 --yes \
- && wget -O- https://repo.saltstack.com/apt/debian/10/armhf/latest/SALTSTACK-GPG-KEY.pub | apt-key add -
+ && wget -O- https://repo.saltstack.com/py3/debian/10/armhf/latest/SALTSTACK-GPG-KEY.pub  | apt-key add -
 
 # Setup saltstack list & install salt-master
 RUN \
-  echo 'deb http://repo.saltstack.com/apt/debian/10/armhf/latest stretch main'| tee -a /etc/apt/sources.list.d/saltstack.list \
+  echo 'deb http://repo.saltstack.com/py3/debian/10/armhf/latest buster main'| tee -a /etc/apt/sources.list.d/saltstack.list \
   && apt-get update \
   && apt-get install salt-master --yes
 
